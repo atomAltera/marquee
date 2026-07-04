@@ -1,35 +1,8 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Marquee" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бегущая строка"
-          }
-        }
-      }
-    },
-    "Text" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст"
-          }
-        }
-      }
-    },
-    "Enter text" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Введите текст"
-          }
-        }
-      }
+    "%lld" : {
+
     },
     "All caps" : {
       "localizations" : {
@@ -51,22 +24,32 @@
         }
       }
     },
-    "Text color" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цвет текста"
-          }
-        }
-      }
-    },
     "Background color" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Цвет фона"
+          }
+        }
+      }
+    },
+    "Enter text" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите текст"
+          }
+        }
+      }
+    },
+    "Marquee" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бегущая строка"
           }
         }
       }
@@ -87,6 +70,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Запустить"
+          }
+        }
+      }
+    },
+    "Text" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст"
+          }
+        }
+      }
+    },
+    "Text color" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвет текста"
           }
         }
       }
