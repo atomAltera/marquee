@@ -1,20 +1,20 @@
-# Marquee — бегущая строка
+# Marquee
 
-iOS-приложение «бегущая строка»: набираете текст, показываете телефон — человек читает с расстояния.
+An iOS app that turns your phone into a scrolling LED-style marquee: type some text, hand the phone to someone, and let them read it from a distance.
 
-## Как работает
+## How it works
 
-**Экран настроек** — текст, цвет текста, цвет фона, скорость прокрутки, переключатель «все буквы заглавные», кнопка «Запустить». Все настройки сохраняются между запусками.
+**Settings screen** — text input, text color, background color, scroll speed, an "all caps" toggle, and a start button. All settings persist between launches.
 
-**Экран показа** — текст огромным шрифтом (почти во всю ширину экрана), повёрнутый боком: телефон остаётся в портретной ориентации, а строка едет снизу вверх. Если текст помещается целиком — стоит по центру. Если нет — крутится бесконечной каруселью с небольшим зазором между повторами, без пустого экрана. Для языков с письмом справа налево (иврит, арабский) направление движения зеркальное. Экран не гаснет во время показа. Тап в любом месте — возврат к настройкам.
+**Display screen** — the text is shown at a huge size (nearly the full width of the screen), rotated sideways: the phone stays in portrait orientation while the line travels bottom to top. If the text fits entirely, it's centered and static. If not, it loops in an endless carousel with a small gap between repeats and no blank screen in between. For right-to-left scripts (Hebrew, Arabic), the direction of motion is mirrored. The screen stays awake while displaying. Tapping anywhere returns to settings.
 
-## Технические детали
+## Technical details
 
-- SwiftUI, без внешних зависимостей
-- Анимация на `TimelineView(.animation)` — позиция считается от времени, без перезапуска анимаций
-- Поворот текста через `rotationEffect(90°)` вместо смены ориентации системы — никаких «перекручиваний» экрана
-- Настройки в `@AppStorage`, цвета сериализуются в hex
+- SwiftUI, no external dependencies
+- Animation driven by `TimelineView(.animation)` — position is computed from elapsed time, so nothing restarts or drifts
+- Text is rotated via `rotationEffect(90°)` instead of changing the system orientation — no screen "flipping"
+- Settings are stored in `@AppStorage`; colors are serialized to hex
 
-## Сборка
+## Build
 
-Открыть `Marquee.xcodeproj` в Xcode и запустить. Требуется iOS 26+.
+Open `Marquee.xcodeproj` in Xcode and run. Requires iOS 26+.

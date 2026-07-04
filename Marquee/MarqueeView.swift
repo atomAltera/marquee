@@ -16,9 +16,9 @@ struct MarqueeView: View {
 
     var body: some View {
         GeometryReader { geo in
-            // Полоса с текстом живёт в «ландшафтной» системе координат
-            // и поворачивается на 90°: движение вправо-влево по полосе
-            // на экране выглядит как снизу вверх.
+            // The text strip lives in a "landscape" coordinate system and is
+            // rotated 90°: left-right motion within the strip appears as
+            // bottom-to-top motion on screen.
             let stripWidth = geo.size.height
             let stripHeight = geo.size.width
             let fontSize = stripHeight * 0.7
@@ -64,8 +64,9 @@ struct MarqueeView: View {
             label(fontSize: fontSize)
                 .position(x: stripWidth / 2, y: stripHeight / 2)
         } else {
-            // Карусель: копии текста идут друг за другом с небольшим зазором,
-            // в момент старта первая копия уже полностью видна у переднего края.
+            // Carousel: copies of the text follow one another with a small
+            // gap; at start, the first copy is already fully visible at the
+            // leading edge.
             let gap = fontSize * 0.75
             let period = textWidth + gap
             let copies = Int(ceil(stripWidth / period)) + 2
@@ -75,8 +76,8 @@ struct MarqueeView: View {
                     .truncatingRemainder(dividingBy: period)
                 ZStack {
                     ForEach(0..<copies, id: \.self) { index in
-                        // На старте текст отступает от переднего края на размер
-                        // зазора, чтобы начало успевало прочитаться.
+                        // At start, the text is offset from the leading edge by
+                        // the gap size so its beginning has time to be read.
                         let leadingX = isRTL
                             ? stripWidth - textWidth - gap + distance - CGFloat(index) * period
                             : gap + CGFloat(index) * period - distance
@@ -103,8 +104,8 @@ struct MarqueeView: View {
 }
 
 extension String {
-    /// Направление по первому символу с сильной направленностью:
-    /// иврит, арабский и родственные письменности — RTL.
+    /// Direction based on the first strongly-directional character:
+    /// Hebrew, Arabic, and related scripts are RTL.
     var startsWithRTLCharacter: Bool {
         for scalar in unicodeScalars {
             switch scalar.value {
@@ -120,7 +121,7 @@ extension String {
 
 #Preview {
     MarqueeView(
-        text: "Привет, мир! Это бегущая строка.",
+        text: "Hello, world! This is a marquee.",
         textColor: .white,
         backgroundColor: .black,
         speed: 200
