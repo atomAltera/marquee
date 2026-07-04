@@ -13,6 +13,7 @@ struct SettingsView: View {
     @AppStorage("uppercased") private var uppercased = true
 
     @State private var showMarquee = false
+    @FocusState private var textFieldFocused: Bool
 
     private var trimmedText: String {
         text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -35,18 +36,31 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Текст") {
-                    TextField("Введите текст", text: $text)
-                        .submitLabel(.done)
-                    Toggle("Все буквы заглавные", isOn: $uppercased)
+                Section("Text") {
+                    HStack {
+                        TextField("Enter text", text: $text)
+                            .submitLabel(.done)
+                            .focused($textFieldFocused)
+                        if !text.isEmpty {
+                            Button {
+                                text = ""
+                                textFieldFocused = true
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(.secondary)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    Toggle("All caps", isOn: $uppercased)
                 }
 
-                Section("Оформление") {
-                    ColorPicker("Цвет текста", selection: textColor, supportsOpacity: false)
-                    ColorPicker("Цвет фона", selection: backgroundColor, supportsOpacity: false)
+                Section("Appearance") {
+                    ColorPicker("Text color", selection: textColor, supportsOpacity: false)
+                    ColorPicker("Background color", selection: backgroundColor, supportsOpacity: false)
                 }
 
-                Section("Скорость") {
+                Section("Speed") {
                     HStack {
                         Slider(value: $speed, in: 50...600, step: 10)
                         Text("\(Int(speed))")
@@ -60,7 +74,7 @@ struct SettingsView: View {
                     Button {
                         showMarquee = true
                     } label: {
-                        Text("Запустить")
+                        Text("Start")
                             .font(.title2.bold())
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 12)
@@ -71,7 +85,7 @@ struct SettingsView: View {
                 }
                 .listRowBackground(Color.clear)
             }
-            .navigationTitle("Бегущая строка")
+            .navigationTitle("Marquee")
         }
         .fullScreenCover(isPresented: $showMarquee) {
             MarqueeView(

@@ -1,0 +1,96 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Marquee" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бегущая строка"
+          }
+        }
+      }
+    },
+    "Text" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст"
+          }
+        }
+      }
+    },
+    "Enter text" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите текст"
+          }
+        }
+      }
+    },
+    "All caps" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все буквы заглавные"
+          }
+        }
+      }
+    },
+    "Appearance" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оформление"
+          }
+        }
+      }
+    },
+    "Text color" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвет текста"
+          }
+        }
+      }
+    },
+    "Background color" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвет фона"
+          }
+        }
+      }
+    },
+    "Speed" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скорость"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запустить"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
