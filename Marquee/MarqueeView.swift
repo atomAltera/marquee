@@ -44,6 +44,16 @@ struct MarqueeView: View {
         .persistentSystemOverlays(.hidden)
         .contentShape(Rectangle())
         .onTapGesture { dismiss() }
+        // The device is held sideways while the marquee is shown, so "down"
+        // is ambiguous — a decisive swipe in any direction closes the screen.
+        .gesture(
+            DragGesture(minimumDistance: 30)
+                .onEnded { value in
+                    if hypot(value.translation.width, value.translation.height) > 80 {
+                        dismiss()
+                    }
+                }
+        )
         .onAppear {
             UIApplication.shared.isIdleTimerDisabled = true
             startDate = Date()
