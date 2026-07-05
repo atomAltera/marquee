@@ -174,18 +174,30 @@ private struct PreviewStrip: View {
 
             ZStack {
                 backgroundColor
-                StyledText(
-                    text: text,
-                    font: font,
-                    style: style,
-                    italic: italic,
-                    size: Self.fontSize,
-                    color: textColor
-                )
-                .scaleEffect(scale)
+                if style.isAnimated {
+                    TimelineView(.animation) { timeline in
+                        styledText(time: timeline.date.timeIntervalSinceReferenceDate)
+                            .scaleEffect(scale)
+                    }
+                } else {
+                    styledText(time: 0)
+                        .scaleEffect(scale)
+                }
             }
         }
         .frame(height: Self.height)
+    }
+
+    private func styledText(time: Double) -> some View {
+        StyledText(
+            text: text,
+            font: font,
+            style: style,
+            italic: italic,
+            size: Self.fontSize,
+            color: textColor,
+            time: time
+        )
     }
 }
 

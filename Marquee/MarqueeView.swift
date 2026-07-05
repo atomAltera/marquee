@@ -76,8 +76,15 @@ struct MarqueeView: View {
         textWidth: CGFloat
     ) -> some View {
         if textWidth <= stripWidth {
-            label(fontSize: fontSize)
-                .position(x: stripWidth / 2, y: stripHeight / 2)
+            if style.isAnimated {
+                TimelineView(.animation) { timeline in
+                    label(fontSize: fontSize, time: timeline.date.timeIntervalSinceReferenceDate)
+                        .position(x: stripWidth / 2, y: stripHeight / 2)
+                }
+            } else {
+                label(fontSize: fontSize, time: 0)
+                    .position(x: stripWidth / 2, y: stripHeight / 2)
+            }
         } else {
             // Carousel: copies of the text follow one another with a small
             // gap; at start, the first copy is already fully visible at the
@@ -89,6 +96,7 @@ struct MarqueeView: View {
             TimelineView(.animation) { timeline in
                 let distance = (timeline.date.timeIntervalSince(startDate) * speed)
                     .truncatingRemainder(dividingBy: period)
+                let time = style.isAnimated ? timeline.date.timeIntervalSinceReferenceDate : 0
                 ZStack {
                     ForEach(0..<copies, id: \.self) { index in
                         // At start, the text is offset from the leading edge by
@@ -96,7 +104,7 @@ struct MarqueeView: View {
                         let leadingX = isRTL
                             ? stripWidth - textWidth - gap + distance - CGFloat(index) * period
                             : gap + CGFloat(index) * period - distance
-                        label(fontSize: fontSize)
+                        label(fontSize: fontSize, time: time)
                             .position(x: leadingX + textWidth / 2, y: stripHeight / 2)
                     }
                 }
@@ -104,14 +112,15 @@ struct MarqueeView: View {
         }
     }
 
-    private func label(fontSize: CGFloat) -> some View {
+    private func label(fontSize: CGFloat, time: Double) -> some View {
         StyledText(
             text: text,
             font: font,
             style: style,
             italic: italic,
             size: fontSize,
-            color: textColor
+            color: textColor,
+            time: time
         )
     }
 }

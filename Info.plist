@@ -4,5 +4,15 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Black.ttf</string>
+		<string>Oswald-Bold.ttf</string>
+		<string>Rubik-Black.ttf</string>
+		<string>Unbounded-Black.ttf</string>
+		<string>RussoOne-Regular.ttf</string>
+		<string>Exo2-Black.ttf</string>
+		<string>Play-Bold.ttf</string>
+	</array>
 </dict>
 </plist>
