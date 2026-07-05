@@ -10,6 +10,9 @@ struct MarqueeView: View {
     let textColor: Color
     let backgroundColor: Color
     let speed: Double
+    let font: MarqueeFont
+    let style: MarqueeStyle
+    let italic: Bool
 
     @Environment(\.dismiss) private var dismiss
     @State private var startDate = Date()
@@ -22,7 +25,9 @@ struct MarqueeView: View {
             let stripWidth = geo.size.height
             let stripHeight = geo.size.width
             let fontSize = stripHeight * 0.7
-            let textWidth = Self.measureWidth(of: text, fontSize: fontSize)
+            let textWidth = StyledText.measure(
+                text: text, font: font, size: fontSize, italic: italic
+            ).width
 
             ZStack {
                 backgroundColor
@@ -100,16 +105,14 @@ struct MarqueeView: View {
     }
 
     private func label(fontSize: CGFloat) -> some View {
-        Text(text)
-            .font(.system(size: fontSize, weight: .bold))
-            .foregroundStyle(textColor)
-            .lineLimit(1)
-            .fixedSize()
-    }
-
-    private static func measureWidth(of text: String, fontSize: CGFloat) -> CGFloat {
-        let font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
-        return ceil((text as NSString).size(withAttributes: [.font: font]).width)
+        StyledText(
+            text: text,
+            font: font,
+            style: style,
+            italic: italic,
+            size: fontSize,
+            color: textColor
+        )
     }
 }
 
@@ -134,6 +137,9 @@ extension String {
         text: "Hello, world! This is a marquee.",
         textColor: .white,
         backgroundColor: .black,
-        speed: 200
+        speed: 200,
+        font: .system,
+        style: .solid,
+        italic: false
     )
 }
